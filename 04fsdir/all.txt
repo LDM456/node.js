@@ -1,0 +1,100 @@
+// 数组不能进行二进制数据的操作
+// js数组不能像java和python等语言效率高
+// bufffer内存空间开辟出固定大小的内存
+
+// 将字符串转成buffer
+var str = 'asadaad';
+let buf = Buffer.from(str);
+console.log(buf);
+
+// 输出buffer内容
+console.log(buf.toString());4今晚看三体
+1今晚看三体
+2今晚看三体
+3今晚看三体
+4今晚看三体
+1今晚看三体
+2今晚看三体
+3今晚看三体
+4今晚看三体
+var fs = require('fs');
+//导入模块
+// node的读写文件也有同步和异步的接口
+
+
+// 同步
+// var tb = fs.openSync('helloword.txt', 'r');
+// console.log(tb);
+
+// var bf = Buffer.alloc(20)
+// var content = fs.readFileSync('helloword.txt', { flag: 'r', encoding: 'utf-8' })
+
+// 异步
+// fs.readFile('helloword.txt', { flag: 'r', encoding: 'utf-8' }, function(err, data) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log(data);
+//     }
+// })
+
+function fsRead(path) {
+    return new Promise(function(resovle, reject) {
+        fs.readFile(path, { flag: 'r', encoding: 'utf-8' }, function(err, data) {
+            if (err) {
+                // console.log(err);
+                reject(err)
+            } else {
+                // console.log(data);
+                resovle(data)
+            }
+        })
+    })
+}
+
+// var w1 = fsRead('helloword.txt')
+// w1.then(res => {
+//     console.log(res);
+// })
+
+async function ReadList() {
+    const file2 = await fsRead('hello.txt');
+    const file3 = await fsRead(`${file2}.txt`);
+    const finallContent = await fsRead(`${file3}.txt`);
+    console.log(finallContent);
+}
+
+ReadList()
+    // console.log(content);hello3helle!!!hello2santi.txtlet fs = require('fs');
+// var fileText = 'sdsd、、n/n';
+//  同步写入
+// fs.writeFile('test.txt', fileText, { flag: 'w', enconding: 'utf-8' }, function(err) {
+//     if (err) {
+//         console.log('失败');
+//     } else {
+//         console.log('成功');
+//     }
+// })
+
+
+function writefs(path, fileText) {
+    return new Promise(function(resolve, reject) {
+        fs.writeFile(path, fileText, { flag: 'a', enconding: 'utf-8' }, function(err) {
+            if (err) {
+                // console.log('失败');
+                reject(err)
+            } else {
+                // console.log('成功');
+                resolve(err)
+            }
+        })
+    })
+}
+
+async function writeList() {
+    await writefs('santi.txt', '1今晚看三体\n');
+    await writefs('santi.txt', '2今晚看三体\n');
+    await writefs('santi.txt', '3今晚看三体\n');
+    await writefs('santi.txt', '4今晚看三体\n');
+}
+writeList()
