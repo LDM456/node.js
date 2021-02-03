@@ -1,5 +1,4 @@
-const http = require('http'),
-  url = require('url')
+const http = require('http')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const server = http.createServer((req, res) => {
