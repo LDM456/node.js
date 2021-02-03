@@ -3,7 +3,6 @@ const http = require('http'),
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const server = http.createServer((req, res) => {
-  const urlstr = req.url
   const proxyapi = createProxyMiddleware('/api', {
     target: 'https://silkroad.csdn.net',
     changeOrigin: true,
